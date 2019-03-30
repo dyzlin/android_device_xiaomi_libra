@@ -38,4 +38,3 @@
     <!-- Whether to show activity indicators in the status bar -->
     <bool name="config_showActivity">true</bool>
 </resources>
-

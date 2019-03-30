@@ -292,14 +292,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/msm_irqbalance.conf:$(TARGET_COPY_OUT_VENDOR)/etc/msm_irqbalance.conf
 
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/perf-profiles/perf-profile0.conf:$(TARGET_COPY_OUT_VENDOR)/etc/perf-profile0.conf \
-    $(LOCAL_PATH)/configs/perf-profiles/perf-profile1.conf:$(TARGET_COPY_OUT_VENDOR)/etc/perf-profile1.conf \
-    $(LOCAL_PATH)/configs/perf-profiles/perf-profile2.conf:$(TARGET_COPY_OUT_VENDOR)/etc/perf-profile2.conf \
-    $(LOCAL_PATH)/configs/perf-profiles/perf-profile3.conf:$(TARGET_COPY_OUT_VENDOR)/etc/perf-profile3.conf \
-    $(LOCAL_PATH)/configs/perf-profiles/perf-profile4.conf:$(TARGET_COPY_OUT_VENDOR)/etc/perf-profile4.conf \
-    $(LOCAL_PATH)/configs/perf-profiles/perf-profile5.conf:$(TARGET_COPY_OUT_VENDOR)/etc/perf-profile5.conf
-
 # RIL
 PRODUCT_PACKAGES += \
     rild_socket

@@ -37,21 +37,21 @@ echo 0 > /sys/module/lpm_levels/parameters/sleep_disabled
 echo 0 > /sys/module/msm_thermal/core_control/enabled
 for mode in /sys/devices/soc.0/qcom,bcl.*/mode
 do
-    echo -n disable > $mode
+	echo -n disable > $mode
 done
 for hotplug_mask in /sys/devices/soc.0/qcom,bcl.*/hotplug_mask
 do
-    bcl_hotplug_mask=`cat $hotplug_mask`
-    echo 0 > $hotplug_mask
+	bcl_hotplug_mask=`cat $hotplug_mask`
+	echo 0 > $hotplug_mask
 done
 for hotplug_soc_mask in /sys/devices/soc.0/qcom,bcl.*/hotplug_soc_mask
 do
-    bcl_soc_hotplug_mask=`cat $hotplug_soc_mask`
-    echo 0 > $hotplug_soc_mask
+	bcl_soc_hotplug_mask=`cat $hotplug_soc_mask`
+	echo 0 > $hotplug_soc_mask
 done
 for mode in /sys/devices/soc.0/qcom,bcl.*/mode
 do
-    echo -n enable > $mode
+	echo -n enable > $mode
 done
 
 # Disable CPU retention
@@ -70,20 +70,19 @@ echo 0 > /sys/module/lpm_levels/system/a57/a57-l2-retention/idle_enabled
 echo 384000 > /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq
 echo 1440000 > /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq
 echo "interactive" > /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
-echo "80 580000:59 680000:54 780000:63 880000:85 1180000:98 1280000:94" > /sys/devices/system/cpu/cpu0/cpufreq/interactive/target_loads
-echo "98000" > /sys/devices/system/cpu/cpu0/cpufreq/interactive/above_hispeed_delay
-echo 95 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/go_hispeed_load
+echo "80 580000:63 680000:54 780000:60 880000:32 1180000:98 1280000:93" > /sys/devices/system/cpu/cpu0/cpufreq/interactive/target_loads
+echo "38000 1280000:58000" > /sys/devices/system/cpu/cpu0/cpufreq/interactive/above_hispeed_delay
+echo 98 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/go_hispeed_load
 echo 1180000 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/hispeed_freq
-echo 1 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/ignore_hispeed_on_notif
 echo 1 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/io_is_busy
 echo 0 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/max_freq_hysteresis
 echo 38000 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/min_sample_time
 echo 20000 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/timer_rate
-echo 380000 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/timer_slack
+echo 180000 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/timer_slack
 echo 1 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/use_migration_notif
+echo 1 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/align_windows
 echo 1 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/use_sched_load
 echo 0 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/boost
-echo 1 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/align_windows
 echo 250000 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/boostpulse_duration
 
 # Configure governor settings for big cluster
@@ -94,35 +93,34 @@ echo "80 480000:44 580000:65 680000:61 780000:20 880000:90 1180000:74 1280000:98
 echo "78000 1280000:38000" > /sys/devices/system/cpu/cpu4/cpufreq/interactive/above_hispeed_delay
 echo 98 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/go_hispeed_load
 echo 1180000 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/hispeed_freq
-echo 1 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/ignore_hispeed_on_notif
 echo 1 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/io_is_busy
 echo 0 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/max_freq_hysteresis
 echo 78000 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/min_sample_time
-echo 40000 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/timer_rate
-echo 380000 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/timer_slack
+echo 20000 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/timer_rate
+echo 180000 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/timer_slack
 echo 1 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/use_migration_notif
+echo 1 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/align_windows
 echo 1 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/use_sched_load
 echo 0 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/boost
-echo 1 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/align_windows
 echo 125000 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/boostpulse_duration
 
-# Enable thermal and bcl hotplug
+# Re-enable thermal and bcl hotplug
 echo 1 > /sys/module/msm_thermal/core_control/enabled
 for mode in /sys/devices/soc.0/qcom,bcl.*/mode
 do
-    echo -n disable > $mode
+	echo -n disable > $mode
 done
 for hotplug_mask in /sys/devices/soc.0/qcom,bcl.*/hotplug_mask
 do
-    echo $bcl_hotplug_mask > $hotplug_mask
+	echo $bcl_hotplug_mask > $hotplug_mask
 done
 for hotplug_soc_mask in /sys/devices/soc.0/qcom,bcl.*/hotplug_soc_mask
 do
-    echo $bcl_soc_hotplug_mask > $hotplug_soc_mask
+	echo $bcl_soc_hotplug_mask > $hotplug_soc_mask
 done
 for mode in /sys/devices/soc.0/qcom,bcl.*/mode
 do
-    echo -n enable > $mode
+	echo -n enable > $mode
 done
 
 # Set core_ctl module parameters
@@ -131,14 +129,18 @@ echo 30 > /sys/devices/system/cpu/cpu4/core_ctl/busy_down_thres
 echo 100 > /sys/devices/system/cpu/cpu4/core_ctl/offline_delay_ms
 echo 1 > /sys/devices/system/cpu/cpu4/core_ctl/is_big_cluster
 echo 2 > /sys/devices/system/cpu/cpu4/core_ctl/task_thres
+echo 1 > /sys/devices/system/cpu/cpu0/core_ctl/min_cpus
+echo 0 > /sys/devices/system/cpu/cpu4/core_ctl/min_cpus
 
 # Set b.L scheduler parameters
 echo 1 > /proc/sys/kernel/sched_migration_fixup
-echo 30 > /proc/sys/kernel/sched_small_task
-echo 20 > /proc/sys/kernel/sched_mostly_idle_load
-echo 3 > /proc/sys/kernel/sched_mostly_idle_nr_run
-echo 99 > /proc/sys/kernel/sched_upmigrate
-echo 85 > /proc/sys/kernel/sched_downmigrate
+echo 15 > /proc/sys/kernel/sched_small_task
+echo 85 > /proc/sys/kernel/sched_upmigrate
+echo 70 > /proc/sys/kernel/sched_downmigrate
+echo 7500000 > /proc/sys/kernel/sched_cpu_high_irqload
+echo 60 > /proc/sys/kernel/sched_heavy_task
+echo 65 > /proc/sys/kernel/sched_init_task_load
+echo 200000000 > /proc/sys/kernel/sched_min_runtime
 echo 400000 > /proc/sys/kernel/sched_freq_inc_notify
 echo 400000 > /proc/sys/kernel/sched_freq_dec_notify
 
@@ -148,11 +150,11 @@ echo 8 >  /sys/class/net/rmnet_ipa0/queues/rx-0/rps_cpus
 # Set GPU governors
 for devfreq_gov in /sys/class/devfreq/qcom,cpubw*/governor
 do
-    echo "bw_hwmon" > $devfreq_gov
+	echo "bw_hwmon" > $devfreq_gov
 done
 for devfreq_gov in /sys/class/devfreq/qcom,mincpubw*/governor
 do
-    echo "cpufreq" > $devfreq_gov
+	echo "cpufreq" > $devfreq_gov
 done
 
 # Some files in /sys/devices/system/cpu are created after the restorecon of
@@ -160,16 +162,18 @@ done
 # Restorecon again to give new files the correct label.
 restorecon -R /sys/devices/system/cpu
 
-# Enable sched_boost
-echo 1 > /proc/sys/kernel/sched_boost
+# Relax access permission for display power consumption
+chown -h system /sys/devices/system/cpu/cpu0/core_ctl/min_cpus
+chown -h system /sys/devices/system/cpu/cpu4/core_ctl/min_cpus
+chown -h system /sys/devices/system/cpu/cpu0/core_ctl/max_cpus
+chown -h system /sys/devices/system/cpu/cpu4/core_ctl/max_cpus
+
+# Disable sched_boost
+echo 0 > /proc/sys/kernel/sched_boost
 
 # Input boost configuration
-echo 0:1280000 > /sys/module/cpu_boost/parameters/input_boost_freq
+echo 0:580000 4:480000 > /sys/module/cpu_boost/parameters/input_boost_freq
 echo 100 > /sys/module/cpu_boost/parameters/input_boost_ms
 
-# Set LMK parameters
-echo 1 > /sys/module/lowmemorykiller/parameters/enable_adaptive_lmk
-echo 0 > /sys/module/lowmemorykiller/parameters/debug_level
-
-# Android background processes are set to nice 10. Never schedule these on the a57s.
-echo 9 > /proc/sys/kernel/sched_upmigrate_min_nice
+# Set GPU default power level to 5 (180MHz)
+echo 5 > /sys/class/kgsl/kgsl-3d0/default_pwrlevel
