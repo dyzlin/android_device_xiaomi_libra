@@ -103,6 +103,7 @@ on boot
 	mkdir /dev/cpuset/top-app/boost
 	write /dev/cpuset/top-app/cpus 0-3,4-5
 	write /dev/cpuset/top-app/boost/cpus 4-5
+	write /dev/cpuset/restricted/cpus 0-3
 	chown system system /dev/cpuset/top-app/boost
 	chown system system /dev/cpuset/top-app/boost/tasks
 	chmod 0664 /dev/cpuset/top-app/boost/tasks
